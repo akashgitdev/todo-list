@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .close {
+        color: #c17825;
+        font-size: 28px;
+        font-weight: bold;
+        margin-left: 20px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        cursor: pointer;
+      }
+      #ip{
+        height: 30px;
+        width: 200px;
+        box-shadow: 0px 0px 10px ;
+        border: none;
+
+      }
+     
+
+    
+      #back{
+        background-color: rgb(163, 176, 176);
+        padding: 20px;
+      }
+      #list{
+        background-color: rgb(88, 162, 236);
+       
+         
+      }
+      #bnt{
+        border: none;
+        height: 20px;
+        width: 50px;
+        background-color: green;
+        color: aliceblue;
+      }
+      #bnt:hover{
+        background-color: darkblue;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="back">
+    <form id="frm">
+      <input type="text" id="ip" placeholder="Add your daily routine.." /><br><br>
+      <input type="submit" value="ADD"  id="bnt"/>
+    </form>
+  </div>
+
+    <ul id="list"></ul>
+
+    <script>
+      let form = document.getElementById("frm"); //getting form
+      let ip = document.getElementById("ip"); //getting  input value
+      let list = document.getElementById("list"); //getting data in list formate
+          
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // to prevent default page behaviour.
+
+        let listItem = document.createElement("li"); // Create a new list item (li)
+        listItem.innerText = ip.value; // Create the text for the new todo item
+        list.appendChild(listItem); // adding listitem to list
+        let closeButton = document.createElement("span"); // Create a close button (span)
+        closeButton.innerText = "×"; // Close button symbol
+        closeButton.classList.add("close");
+        listItem.appendChild(closeButton);
+
+        closeButton.addEventListener("click", () => {
+          const win = window.confirm("are you confirm?"); //using method
+          if (win) {
+            listItem.remove();
+          }
+        });
+
+        ip.value = ""; // Clear the input field
+
+        // Add event listener to close button to remove the list item
+        closeButton.addEventListener("click", () => {
+          listItem.remove(); // Remove the list item when the close button is clicked
+        });
+      });
+    </script>
+  </body>
+</html>
